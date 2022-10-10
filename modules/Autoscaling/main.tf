@@ -76,7 +76,7 @@ resource "aws_cloudwatch_metric_alarm" "high-memory-policy-alarm" {
     "ServiceName" = "Service-${var.name}",
     "ClusterName" = var.cluster_name
   }
-
+  alarm_actions = var.cw_sns_topic_arn != null ? [var.cw_sns_topic_arn] : []
 }
 
 # ------- High CPU alarm -------
@@ -95,5 +95,5 @@ resource "aws_cloudwatch_metric_alarm" "high-cpu-policy-alarm" {
     "ServiceName" = "Service-${var.name}",
     "ClusterName" = var.cluster_name
   }
-
+  alarm_actions = var.cw_sns_topic_arn != null ? [var.cw_sns_topic_arn] : []
 }
